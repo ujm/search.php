@@ -1,0 +1,47 @@
+$hoge = hogehoge; // 検索の元になるcsvファイル
+$hoge2 = hogehoge; // 入力された値
+$hoge3 = strpos($hoge, hoge2);
+
+-----------input.html-----------
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>検索キーワード入力</title>
+</head>
+<body>
+    <form method="POST" action="search.php">
+        <input type="text" name="key" width="40" />
+        <input type="submit" value="検索" />
+    </form>
+</body>
+</html>
+-----------input.html-----------
+
+
+-----------search.php-----------
+
+<?php
+ini_set('display_errors', 1);
+
+setlocale(LC_ALL, 'ja_JP.UTF-8');
+
+// 検索する値を取得
+$key = $_POST['key'];
+print ("$key<br/>");
+
+// csvを開く
+$handle = fopen("address.csv", "r");
+while($data = fgetcsv($handle, 1024, ",")) {
+    $name = $data[0];
+    $sex = $data[1];
+    $postcode = $data[2];
+    $address = $data[3];
+}
+fclose($handle);
+
+print ("$address");
+?>
+
+-----------search.php-----------
