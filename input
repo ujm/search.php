@@ -41,7 +41,14 @@ while($data = fgetcsv($handle, 1024, ",")) {
 }
 fclose($handle);
 
-print ("$address");
+$search_address = $address;
+$input_key = $key;
+$search = strpos($search_address, $input_key);
+
+if ($search === false) {
+    echo ""
+}
+
 ?>
 
 -----------search.php-----------
